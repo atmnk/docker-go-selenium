@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="81">
+  <server artifactsdir="artifacts" agentAutoRegisterKey="123456789abcdef" commandRepositoryLocation="default"  serverId="c8d43d4c-53e0-4985-8353-f35f1b58206a"/>
+  <pipelines group="gauge">
+    <pipeline name="testSelenium">
+      <materials>
+        <git url="https://github.com/atmaramnaik/sampleGauge.git" />
+      </materials>
+      <stage name="run">
+        <jobs>
+          <job name="run">
+            <tasks>
+              <exec command="mvn">
+                <arg>clean</arg>
+                <arg>test</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
+</cruise>

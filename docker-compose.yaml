@@ -1,0 +1,14 @@
+goserver:
+  build: gocd-server
+  hostname: go-server
+  ports:
+    - '8153:8153'
+    - '8154:8154'
+goagent:
+  build: gocd-agent
+  links:
+    - goserver
+  volumes:
+    - /Users/atmaramn/.m2:/root/.m2
+  environment:
+    AGENT_KEY: '123456789abcdef'
