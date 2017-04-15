@@ -1,0 +1,22 @@
+---
+sudo: required
+
+services:
+  - docker
+  - docker-compose
+
+language: bash
+
+before_install:
+  - docker-compose version
+  - sed -i.bu 's/atmaramn/'$(whoami)'/g' docker-compose.yaml
+  - docker-compose up &
+
+script:
+  - echo "hellow"
+  - docker-compose ps
+
+# only push up tags
+after_success:
+  - docker-compose kill
+  - docker-compose rm
