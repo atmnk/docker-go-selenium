@@ -2,12 +2,16 @@
 # NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
 # PLEASE UPDATE Dockerfile.txt INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM selenium/node-chrome
+FROM selenium/node-firefox
 MAINTAINER anaik@thoughtworks.com
 
 USER root
 
-RUN apt-get update; apt-get install -y curl
+RUN add-apt-repository -y ppa:webupd8team/java \
+    && apt-get update \
+    && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections \
+    && apt-get install -y curl oracle-java8-installer \
+    && apt-get clean
 
 ENV GOCD_VERSION=16.5.0-3305
 ENV GOCD_AGENT_SHA1=90e1f9c7281c6cd7ddc384b831faeaf347331ab9

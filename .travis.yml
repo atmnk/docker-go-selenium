@@ -12,6 +12,7 @@ before_install:
   - sed -i.bu 's/atmaramn/'$(whoami)'/g' docker-compose.yaml
   - docker-compose pull
   - docker-compose build
+  - docker-compose create
   - docker-compose start
 
 script:
