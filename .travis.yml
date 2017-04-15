@@ -2,11 +2,18 @@
 sudo: required
 
 services:
+  - docker
   - docker-compose
 
 language: bash
 
 before_install:
+  - |
+      if ! git diff --name-only $TRAVIS_COMMIT_RANGE | grep -qvE '(.md)|(.png)|(.pdf)|(.html)|^(LICENSE)|^(docs)|(.gitignore)'
+      then
+        echo "Only doc files were updated, not running the CI."
+        exit
+      fi
   - docker-compose version
   - sed -i.bu 's/user-name/'$(whoami)'/g' docker-compose.yaml
   - docker-compose pull
