@@ -10,7 +10,9 @@ language: bash
 before_install:
   - docker-compose version
   - sed -i.bu 's/atmaramn/'$(whoami)'/g' docker-compose.yaml
-  - docker-compose up &
+  - docker-compose pull
+  - docker-compose build
+  - docker-compose start
 
 script:
   - echo "hellow"
