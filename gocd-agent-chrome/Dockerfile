@@ -6,11 +6,7 @@ FROM selenium/node-chrome
 MAINTAINER anaik@thoughtworks.com
 
 USER root
-RUN add-apt-repository -y ppa:webupd8team/java \
-    && apt-get update \
-    && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections \
-    && apt-get install -y curl oracle-java8-installer \
-    && apt-get clean
+RUN apt-get update; apt-get install -y curl
 
 ENV GOCD_VERSION=16.5.0-3305
 ENV GOCD_AGENT_SHA1=90e1f9c7281c6cd7ddc384b831faeaf347331ab9
@@ -31,7 +27,11 @@ RUN apt-get install -y git maven
 
 RUN chmod -R 777 /var/log /var/lib /etc/default/go-agent /usr/share/go-agent
 RUN apt-get install -y software-properties-common python-software-properties
-
+RUN add-apt-repository -y ppa:webupd8team/java \
+    && apt-get update \
+    && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections \
+    && apt-get install -y oracle-java8-installer \
+    && apt-get clean
 
 
 #====================================
