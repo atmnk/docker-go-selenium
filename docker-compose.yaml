@@ -4,11 +4,27 @@ goserver:
   ports:
     - '8153:8153'
     - '8154:8154'
-goagent:
-  build: gocd-agent
+chrome:
+  build: gocd-agent-chrome
   links:
     - goserver
   volumes:
-    - /Users/atmaramn/.m2:/root/.m2
+    - /Users/user-name/.m2:/root/.m2
+  environment:
+    AGENT_KEY: '123456789abcdef'
+firefox:
+  build: gocd-agent-firefox
+  links:
+    - goserver
+  volumes:
+    - /Users/user-name/.m2:/root/.m2
+  environment:
+    AGENT_KEY: '123456789abcdef'
+phantomjs:
+  build: gocd-agent-phantomjs
+  links:
+    - goserver
+  volumes:
+    - /Users/user-name/.m2:/root/.m2
   environment:
     AGENT_KEY: '123456789abcdef'

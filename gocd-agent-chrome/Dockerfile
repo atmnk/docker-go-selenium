@@ -6,7 +6,6 @@ FROM selenium/node-chrome
 MAINTAINER anaik@thoughtworks.com
 
 USER root
-
 RUN apt-get update; apt-get install -y curl
 
 ENV GOCD_VERSION=16.5.0-3305
