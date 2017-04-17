@@ -8,4 +8,4 @@ Fix username for your machine
 
   `sed -i.bu 's/user-name/'$(whoami)'/g' docker-compose.yaml`
 
-Explanation: It will replace user name for `.m2` directory to with current user and create a backup of the file.
+Explanation: It will replace user name with the current user in docker-compose.yaml.
